@@ -1,0 +1,145 @@
+/* Deadlines screen only. Owner: Deadlines. Every rule starts with .screen-deadlines and uses tokens only. */
+
+.screen-deadlines .dl-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.screen-deadlines .dl-groupbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.screen-deadlines .dl-section,
+.screen-deadlines .dl-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.screen-deadlines .dl-heading {
+  font-size: 17px;
+  font-weight: 600;
+}
+.screen-deadlines .dl-count { font-weight: 400; font-size: 14px; }
+.screen-deadlines .dl-none { font-size: 13px; padding: 4px 2px; }
+
+/* ---------- Rows ---------- */
+
+.screen-deadlines .dl-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.screen-deadlines .dl-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid transparent;
+  min-width: 0;
+}
+.screen-deadlines .dl-row:last-child { border-bottom: 0; }
+.screen-deadlines .dl-row.is-overdue { border-left-color: var(--red); }
+
+.screen-deadlines .dl-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.screen-deadlines .dl-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.screen-deadlines span.dl-title { color: var(--ink); }
+
+.screen-deadlines .dl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.screen-deadlines .dl-amount { color: var(--ink); font-weight: 600; }
+
+.screen-deadlines .dl-side {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 12px;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.screen-deadlines .dl-note { font-size: 13px; }
+
+/* ---------- Done (collapsed) ---------- */
+
+.screen-deadlines .dl-done > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  cursor: pointer;
+  list-style: none;
+}
+.screen-deadlines .dl-done > summary::-webkit-details-marker { display: none; }
+.screen-deadlines .dl-done > summary::before { content: "\25B8"; color: var(--muted); }
+.screen-deadlines .dl-done[open] > summary::before { content: "\25BE"; }
+.screen-deadlines .dl-done > .dl-list,
+.screen-deadlines .dl-done > .dl-none { margin-top: 8px; }
+
+/* ---------- Calendar ---------- */
+
+.screen-deadlines .dl-arrow { font-size: 20px; }
+.screen-deadlines .dl-daynum { font-variant-numeric: tabular-nums; }
+
+/* Count chip: phone only. Shows the number as text, never color alone. */
+.screen-deadlines .dl-dot {
+  display: none;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: var(--pill);
+  background: var(--fill);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+.screen-deadlines .dl-dot.is-overdue { background: var(--tag-expired-bg); color: var(--red-ink); }
+.screen-deadlines .dl-dot.is-soon { background: var(--tag-expiring-bg); color: var(--amber-ink); }
+
+.screen-deadlines .dl-agenda { display: none; }
+
+@media (max-width: 599px) {
+  .screen-deadlines .cal-day { min-height: 44px; align-items: center; }
+  .screen-deadlines .cal-day .cal-item { display: none; }
+  .screen-deadlines .dl-dot { display: inline-flex; }
+  .screen-deadlines .dl-dow-rest { display: none; }
+  .screen-deadlines .dl-agenda { display: flex; }
+  .screen-deadlines .dl-cal + .dl-none { display: none; }
+  .screen-deadlines .dl-row { padding: 12px; }
+  .screen-deadlines .dl-side { justify-content: flex-start; flex-basis: 100%; }
+}

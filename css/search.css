@@ -1,0 +1,153 @@
+/* Search page only. Owner: Search. Every rule starts with .screen-search and uses tokens only. */
+
+.screen-search {
+  max-width: 880px;
+  align-items: stretch;
+}
+
+.screen-search .page-title {
+  text-align: center;
+  margin-top: 8px;
+}
+@media (min-width: 700px) {
+  .screen-search .page-title { font-size: 32px; margin-top: 24px; }
+}
+
+/* The big pill input */
+.screen-search .search-big {
+  min-height: 52px;
+  padding: 10px 20px 10px 44px;
+  background-position: 18px center;
+  background-color: var(--panel);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  font-size: 17px;
+}
+.screen-search .search-big:focus {
+  border-color: var(--primary);
+  outline: 2px solid var(--primary-soft);
+  outline-offset: 0;
+}
+
+/* Suggestion chips: wrap on phones, centered */
+.screen-search .search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.screen-search .search-chips .chip { white-space: normal; }
+
+.screen-search .search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 4px;
+  min-width: 0;
+}
+
+.screen-search .search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* Folder matches: compact rows */
+.screen-search .search-folders {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.screen-search .search-folder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 14px;
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+.screen-search .search-folder + .search-folder { border-top: 1px solid var(--border); }
+.screen-search .search-folder:hover,
+.screen-search .search-folder:focus-visible { background: var(--primary-soft); text-decoration: none; }
+.screen-search .search-folder-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.screen-search .search-folder-name { font-weight: 600; overflow-wrap: anywhere; }
+.screen-search .search-folder-path { font-size: 13px; overflow-wrap: anywhere; }
+.screen-search .search-folder-go {
+  flex: none;
+  font-size: 13px;
+  color: var(--link);
+}
+@media (max-width: 480px) {
+  .screen-search .search-folder-go { display: none; }
+}
+
+/* Document cards */
+.screen-search .search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+}
+.screen-search .search-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--ink);
+  text-decoration: none;
+}
+.screen-search .search-card:hover,
+.screen-search .search-card:focus-visible {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+}
+.screen-search .search-card.is-best { border-color: var(--primary); }
+
+.screen-search .search-card-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.screen-search .search-card-who {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.screen-search .search-best {
+  flex: none;
+  padding: 2px 10px;
+  border-radius: var(--pill);
+  background: var(--primary-soft);
+  color: var(--link);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.screen-search .search-card-name {
+  font-weight: 500;
+  line-height: 1.4;
+}
+.screen-search .search-card-meta {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,126 @@
+/* Setup screen only. Owner: Intake. Every rule starts with .screen-setup and uses tokens only. */
+
+.screen-setup .setup-title { font-size: 17px; font-weight: 600; }
+
+.screen-setup .setup-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px var(--gap);
+  margin: 0;
+}
+.screen-setup .setup-details dt { color: var(--muted); font-size: 13px; }
+.screen-setup .setup-details dd { margin: 0; font-weight: 600; }
+
+.screen-setup .setup-channels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--gap);
+}
+.screen-setup .setup-channels > * { min-width: 0; }
+
+.screen-setup .setup-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--fill);
+}
+.screen-setup .setup-value {
+  flex: 1 1 180px;
+  min-width: 0;
+  color: var(--link);
+  font-weight: 500;
+}
+.screen-setup .setup-copy .btn { flex: none; min-width: 80px; }
+
+.screen-setup .setup-steps {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  font-size: 14px;
+}
+.screen-setup .setup-steps li + li { margin-top: 4px; }
+
+/* ---------- Where files live ---------- */
+
+.screen-setup .setup-storage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.screen-setup .setup-storage-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.screen-setup .setup-storage-name .muted { font-size: 13px; }
+
+.screen-setup .setup-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.screen-setup .setup-dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: var(--pill);
+  background: var(--muted);
+}
+.screen-setup .setup-status.is-connected { color: var(--green-ink); }
+.screen-setup .setup-status.is-connected .setup-dot { background: var(--green); }
+.screen-setup .setup-status.is-attention { color: var(--amber-ink); }
+.screen-setup .setup-status.is-attention .setup-dot { background: var(--amber); }
+.screen-setup .setup-status.is-offline { color: var(--red-ink); }
+.screen-setup .setup-status.is-offline .setup-dot { background: var(--red); }
+
+.screen-setup .setup-help,
+.screen-setup .setup-note { font-size: 13px; }
+
+.screen-setup .setup-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap);
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+.screen-setup .setup-switch-track {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--pill);
+  background: var(--border-strong);
+  transition: background 0.15s;
+}
+.screen-setup .setup-switch-track::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--pill);
+  background: var(--panel);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.15s;
+}
+.screen-setup .setup-switch.is-on .setup-switch-track { background: var(--primary); }
+.screen-setup .setup-switch.is-on .setup-switch-track::after { transform: translateX(18px); }
+.screen-setup .setup-switch:focus-visible .setup-switch-track { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+.screen-setup .setup-uploads { font-size: 14px; }

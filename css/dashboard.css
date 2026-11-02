@@ -1,0 +1,193 @@
+/* Today page styles. Owner: Today. Every rule starts with .screen-dashboard. Tokens only. */
+
+/* ---------- Heading ---------- */
+
+.screen-dashboard .dash-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 16px;
+}
+.screen-dashboard .dash-titles { min-width: 0; }
+.screen-dashboard .dash-date { font-size: 14px; margin-bottom: 2px; }
+@media (max-width: 499px) {
+  .screen-dashboard .dash-head > .btn { flex: 1 1 100%; }
+}
+
+/* ---------- Ring cards and Expiring card ---------- */
+
+.screen-dashboard .dash-stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+}
+@media (min-width: 640px) {
+  .screen-dashboard .dash-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+  .screen-dashboard .dash-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.screen-dashboard .dash-ring-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.screen-dashboard .dash-ring-card > * + * { margin-top: 0; }
+.screen-dashboard .dash-ring-card:hover { border-color: var(--border-strong); background: var(--bg); }
+.screen-dashboard .dash-ring-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.screen-dashboard .dash-ring-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.screen-dashboard .dash-ring-title { font-weight: 600; font-size: 15px; }
+.screen-dashboard .dash-ring-text { font-size: 13px; }
+
+.screen-dashboard .dash-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+  color: var(--muted);
+}
+.screen-dashboard .dash-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.screen-dashboard .dash-dot { width: 8px; height: 8px; border-radius: var(--pill); flex: none; }
+.screen-dashboard .dash-dot-info { background: var(--primary); }
+.screen-dashboard .dash-dot-amber { background: var(--amber); }
+.screen-dashboard .dash-dot-red { background: var(--red); }
+
+.screen-dashboard .dash-expiring-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.screen-dashboard .dash-see-all { font-size: 13px; white-space: nowrap; }
+.screen-dashboard .dash-big {
+  margin: 2px 0 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.screen-dashboard .dash-big.is-red { color: var(--red); }
+.screen-dashboard .dash-big.is-amber { color: var(--amber); }
+.screen-dashboard .dash-big.is-green { color: var(--green); }
+
+.screen-dashboard .dash-exp-list,
+.screen-dashboard .dash-lane-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.screen-dashboard .dash-exp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  min-width: 0;
+}
+.screen-dashboard .dash-exp-row:hover { text-decoration: none; }
+.screen-dashboard .dash-exp-row:hover .dash-exp-name { color: var(--link); }
+.screen-dashboard .dash-exp-text { display: flex; flex-direction: column; min-width: 0; }
+.screen-dashboard .dash-exp-name { font-weight: 600; overflow-wrap: anywhere; }
+.screen-dashboard .dash-exp-sub { font-size: 12px; }
+
+/* ---------- Lanes ---------- */
+
+.screen-dashboard .dash-lanes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .screen-dashboard .dash-lanes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.screen-dashboard .dash-lane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.screen-dashboard .dash-lane-count {
+  min-width: 26px;
+  padding: 1px 8px;
+  border-radius: var(--pill);
+  background: var(--fill);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+.screen-dashboard .dash-lane-note { font-size: 13px; }
+.screen-dashboard .dash-lane-empty {
+  padding: 16px 8px;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 13px;
+}
+.screen-dashboard .dash-lane-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--ink);
+  min-width: 0;
+}
+.screen-dashboard a.dash-lane-row:hover { text-decoration: none; border-color: var(--border-strong); background: var(--bg); }
+.screen-dashboard .dash-lane-needs a.dash-lane-row { border-color: var(--amber); background: var(--tag-expiring-bg); }
+.screen-dashboard .dash-lane-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.screen-dashboard .dash-lane-name { font-weight: 500; overflow-wrap: anywhere; }
+.screen-dashboard .dash-lane-sub { font-size: 12px; overflow-wrap: anywhere; }
+.screen-dashboard .dash-lane-reason { font-weight: 700; }
+
+.screen-dashboard .dash-shimmer {
+  font-size: 12px;
+  color: var(--muted);
+  background: linear-gradient(90deg, var(--muted) 0%, var(--muted) 40%, var(--primary) 50%, var(--muted) 60%, var(--muted) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: screen-dashboard-shimmer 1.6s linear infinite;
+}
+@keyframes screen-dashboard-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-dashboard .dash-shimmer { animation: none; -webkit-text-fill-color: currentColor; background: none; }
+}
+
+/* ---------- Reminder outbox ---------- */
+
+.screen-dashboard .dash-out-note { font-size: 13px; }
+.screen-dashboard .dash-out-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px 24px;
+}
+@media (min-width: 900px) {
+  .screen-dashboard .dash-out-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.screen-dashboard .dash-out-col { min-width: 0; }
+.screen-dashboard .dash-out-head { font-size: 14px; font-weight: 600; margin: 8px 0 2px; }
+.screen-dashboard .outbox { margin: 0; padding: 0; list-style: none; }
+.screen-dashboard .dash-out-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 200px; }
+.screen-dashboard .dash-out-title { font-weight: 500; overflow-wrap: anywhere; }
+.screen-dashboard .dash-out-meta { display: inline-flex; align-items: center; gap: 8px; flex: none; }
+.screen-dashboard .dash-out-date { font-size: 12px; color: var(--muted); white-space: nowrap; }

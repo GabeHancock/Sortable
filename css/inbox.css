@@ -1,0 +1,145 @@
+/* Inbox-only styles. Owner: Intake. Every rule starts with .screen-inbox and uses tokens only. */
+
+/* Heading with Simulate incoming on the right */
+.screen-inbox .inbox-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 16px;
+}
+.screen-inbox .inbox-head-text { min-width: 0; }
+.screen-inbox .inbox-head-text p { font-size: 14px; margin-top: 2px; }
+
+/* Being read now */
+.screen-inbox .inbox-reading-list { display: flex; flex-direction: column; gap: 10px; }
+.screen-inbox .inbox-reading-row { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.screen-inbox .inbox-reading-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 13px; }
+.screen-inbox .inbox-shimmer {
+  color: var(--muted);
+  background: linear-gradient(90deg, var(--muted) 0%, var(--muted) 40%, var(--border-strong) 50%, var(--muted) 60%, var(--muted) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: screen-inbox-shimmer 1.4s linear infinite;
+}
+@keyframes screen-inbox-shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .screen-inbox .inbox-shimmer { animation: none; -webkit-text-fill-color: currentColor; }
+}
+
+/* Queue and details panel side by side on wide screens */
+.screen-inbox .inbox-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+}
+@media (min-width: 700px) and (max-width: 999px) {
+  .screen-inbox .inbox-layout .details-panel { order: -1; width: auto; position: static; max-height: none; }
+}
+@media (min-width: 1000px) {
+  .screen-inbox .inbox-layout.has-panel { grid-template-columns: minmax(0, 1fr) 380px; }
+}
+
+/* Review queue */
+.screen-inbox .inbox-queue-head { display: flex; align-items: center; gap: 10px; }
+.screen-inbox .inbox-queue-title { font-size: 17px; font-weight: 600; }
+.screen-inbox .inbox-queue > p { font-size: 14px; }
+.screen-inbox .inbox-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.screen-inbox .inbox-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  grid-template-areas: "thumb info actions" "fix fix fix";
+  align-items: center;
+  gap: 10px 14px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.screen-inbox .inbox-row:last-child { border-bottom: 0; }
+.screen-inbox .inbox-row.is-selected { background: var(--primary-soft); }
+.screen-inbox .inbox-row:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+.screen-inbox .inbox-row:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+
+.screen-inbox .inbox-thumb {
+  grid-area: thumb;
+  display: block;
+  width: 64px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.screen-inbox .inbox-thumb .doc-mock--card { height: 82px; }
+.screen-inbox .inbox-thumb .doc-mock-frame { pointer-events: none; }
+.screen-inbox .inbox-thumb .doc-mock-page { padding: 6px 7px; gap: 3px; }
+.screen-inbox .inbox-thumb .doc-mock-practice,
+.screen-inbox .inbox-thumb .doc-mock-who,
+.screen-inbox .inbox-thumb .doc-mock-foot { display: none; }
+.screen-inbox .inbox-thumb .doc-mock-type { font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.screen-inbox .inbox-thumb .doc-mock-lines span { height: 3px; }
+.screen-inbox .inbox-thumb:hover .doc-mock { border-color: var(--primary); }
+
+.screen-inbox .inbox-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+}
+.screen-inbox .inbox-filename { font-size: 14px; font-weight: 500; max-width: 100%; }
+.screen-inbox .inbox-source { font-size: 12px; overflow-wrap: anywhere; }
+.screen-inbox .inbox-guess {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  font-size: 13px;
+}
+.screen-inbox .inbox-guess strong { font-weight: 600; overflow-wrap: anywhere; }
+.screen-inbox .inbox-preview { min-height: 28px; padding: 2px 0; font-size: 13px; }
+
+.screen-inbox .inbox-actions { grid-area: actions; display: flex; gap: 8px; }
+
+.screen-inbox .inbox-fix {
+  grid-area: fix;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.screen-inbox .inbox-fix > p { font-size: 13px; }
+.screen-inbox .inbox-alts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.screen-inbox .inbox-alts .btn { white-space: normal; text-align: left; }
+
+/* Phones and narrow panels: actions drop below the text */
+@media (max-width: 599px) {
+  .screen-inbox .inbox-simulate { flex: 1 1 100%; }
+  .screen-inbox .inbox-row {
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-areas: "thumb info" "actions actions" "fix fix";
+    align-items: start;
+  }
+  .screen-inbox .inbox-thumb { width: 56px; }
+  .screen-inbox .inbox-thumb .doc-mock--card { height: 72px; }
+  .screen-inbox .inbox-actions .btn { flex: 1 1 0; }
+  .screen-inbox .inbox-alts .btn { flex: 1 1 100%; justify-content: flex-start; }
+}
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .screen-inbox .inbox-layout.has-panel .inbox-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-areas: "thumb info" "thumb actions" "fix fix";
+  }
+}
